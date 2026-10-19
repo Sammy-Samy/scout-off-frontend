@@ -360,9 +360,7 @@ export default function BulkPlayerImport() {
         // they've already abandoned. The post-loop cancel handler resets
         // this row's "signing" state back to pending.
         if (cancelledRef.current) break;
-        const result = await signAndSubmit(xdr);
-        const hash =
-          typeof result === 'string' ? result : ((result as any)?.hash ?? null);
+        const hash = await signAndSubmit(xdr);
 
         setSubmissions((prev) => ({
           ...prev,
